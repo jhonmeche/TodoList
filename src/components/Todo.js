@@ -29,7 +29,7 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
       className={todo.isComplete ? 'todo-row complete' : 'todo-row'}
       key = {index}
       >
-      <div key={todo.id} onClick={() => completeTodo(todo.id)}>
+      <div key={todo.id} >
         {todo.text}
       </div>
 
@@ -44,9 +44,9 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
           onClick={() => setEdit({ id: todo.id, value: todo.text })}
           className='edit-icon'
         />
-        <AiFillCheckCircle
+        <AiFillCheckCircle //boton para marcar o desmarcar la tarea finalizada        
           title='Tarea terminada'
-          onClick={() => completeTodo(todo.id)}/>        
+          onClick={() => completeTodo(todo.id)}/>
       </div>
     </div>
   ));
