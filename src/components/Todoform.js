@@ -30,6 +30,7 @@ function TodoForm(props) {
         {props.edit ? (
         <>
           <input
+            autoComplete='off'
             placeholder='Actualizar tu tarea.'
             value={input}
             onChange={handleChange}
@@ -44,6 +45,7 @@ function TodoForm(props) {
       ) : (
         <>
           <input
+            autoComplete='off'
             placeholder='Agregar tarea'
             value={input}
             onChange={handleChange}

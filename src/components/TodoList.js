@@ -5,7 +5,7 @@ import TodoForm from './TodoForm'
 function TodoList() {
   const [todos, setTodos] = useState([])
 
-  //funcion para adicionar las tareas
+  //funcion para adicionar las tareas, se verifica que el input no este vacio o lleno de espacios.
   const addTodo = todo => {
     if(!todo.text || /^\s*$/.test(todo.text)){
       return
