@@ -1,8 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 
-function Todoform(props) {
+function TodoForm(props) {
   
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState('');
+
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    inputRef.current.focus()
+  })
 
   const handleChange = e => {
     setInput(e.target.value)
@@ -15,22 +21,43 @@ function Todoform(props) {
       id: Math.floor(Math.random() * 10000),
       text: input
     });
+
     setInput('');
   }
   
   return (
       <form className = 'todo-form' onSubmit = { handleSubmit }>
-        <input 
-        type = "text" 
-        placeholder = "Add a todo" 
-        value = {input} 
-        name = "text"
-        className = 'todo-input'
-        onChange = {handleChange}
-        />
-        <button className="todo-button">Add todo</button>
-      </form>    
+        {props.edit ? (
+        <>
+          <input
+            placeholder='Actualizar tu tarea.'
+            value={input}
+            onChange={handleChange}
+            name='text'
+            ref={inputRef}
+            className='todo-input edit'
+          />
+          <button onClick={handleSubmit} className='todo-button edit'>
+            Actualizar
+          </button>
+        </>
+      ) : (
+        <>
+          <input
+            placeholder='Agregar tarea'
+            value={input}
+            onChange={handleChange}
+            name='text'
+            className='todo-input'
+            ref={inputRef}
+          />
+          <button onClick={handleSubmit} className='todo-button'>
+            Guardar
+          </button>
+        </>
+      )}
+      </form>
   );
 }
 
-export default Todoform
+export default TodoForm
